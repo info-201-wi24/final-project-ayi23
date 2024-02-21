@@ -13,6 +13,8 @@ write.csv(joined_data, "State Expenditures and Suicide Rates.csv", row.names = F
 #one data summarization table
 csv1summarization_df <- joined_data %>%
   summarize(
-    Mean_Suicide_Rate = mean(SuicideRate, na.rm = TRUE)
-    Mean_State_Expenditure = mean(StateExpenditure, na.rm = TRUE)
-  )
+    (Mean_Suicide_Rate = mean(RATE, na.rm = TRUE)),
+    (Mean_Deaths = mean(DEATHS, na.rm = TRUE)),
+    (Mean_State_Expenditure = mean(TotalMHExpend, na.rm = TRUE)),
+    (Mean_Per_Capita_Expenditure = mean(PerCapitaMHExpend, na.rm = TRUE))
+    )
