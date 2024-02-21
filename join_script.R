@@ -10,6 +10,9 @@ joined_data <- left_join(csv1, csv2, by = "STATE")
 # Write joined data to a new CSV file
 write.csv(joined_data, "State Expenditures and Suicide Rates.csv", row.names = FALSE)
 
+#one categorical variable -> State
+#one new continuous/numerical variable -> Suicide Rates, Expenditures
+
 #one data summarization table
 summarization_df <- joined_data %>%
   summarize(
