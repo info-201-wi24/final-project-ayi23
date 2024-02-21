@@ -11,7 +11,7 @@ joined_data <- left_join(csv1, csv2, by = "STATE")
 write.csv(joined_data, "State Expenditures and Suicide Rates.csv", row.names = FALSE)
 
 #one data summarization table
-csv1summarization_df <- joined_data %>%
+summarization_df <- joined_data %>%
   summarize(
     (Mean_Suicide_Rate = mean(RATE, na.rm = TRUE)),
     (Mean_Deaths = mean(DEATHS, na.rm = TRUE)),
