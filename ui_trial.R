@@ -1,89 +1,80 @@
-library(shiny)
-
 ## OVERVIEW TAB INFO
 
-overview_tab <- tabPanel("Introduction",
-                         fluidPage(
-                           h1("Introduction"),
-                           p("This Shiny app explores the correlation between state expenditures on mental health and suicide rates in the United States."),
-                           p("Select options below to explore the data.")
-                         )
+overview_tab <- tabPanel("Overview",
+   h1("Mental Health Expenditures & Suicide Rates"),
+   p("WIP")
 )
 
-## HEATMAP OF SUICIDE RATES TAB INFO
+## VIZ 1 TAB INFO
 
-suicide_heatmap_sidebar <- sidebarPanel(
-  radioButtons("suicide_metric", "Select metric:", choices = c("Suicide Rate" = "RATE", "Total Suicide Death Count" = "DEATH"))
+viz_1_sidebar <- sidebarPanel(
+  h2("WIP heatmap"),
+  #TODO: Put inputs for modifying graph here
 )
 
-suicide_heatmap_main_panel <- mainPanel(
-  leafletOutput("suicide_map")
+viz_1_main_panel <- mainPanel(
+  h2("Heatmap of Suicide Rates"),
+  # plotlyOutput(outputId = "your_viz_1_output_id")
 )
 
-suicide_heatmap_tab <- tabPanel("Suicide Rate Heatmap",
-                                fluidPage(
-                                  h2("Suicide Rate Heatmap"),
-                                  sidebarLayout(
-                                    suicide_heatmap_sidebar,
-                                    suicide_heatmap_main_panel
-                                  )
-                                )
+viz_1_tab <- tabPanel("Suicide Rates per State",
+  sidebarLayout(
+    viz_1_sidebar,
+    viz_1_main_panel
+  )
 )
 
-## HEATMAP OF STATE MENTAL HEALTH EXPENDITURES TAB INFO
+## VIZ 2 TAB INFO
 
-mh_expenditure_heatmap_sidebar <- sidebarPanel(
-  radioButtons("mh_expenditure", "Select expenditure type:", choices = c("Total Spending" = "TotalMHExpend", "Per Capita Spending" = "PerCapitaMHExpend"))
+viz_2_sidebar <- sidebarPanel(
+  h2("WIP heatmap"),
+  #TODO: Put inputs for modifying graph here
 )
 
-mh_expenditure_heatmap_main_panel <- mainPanel(
-  leafletOutput("mh_expenditure_map")
+viz_2_main_panel <- mainPanel(
+  h2("Heatmap of State Mental Health Expenditures"),
+  # plotlyOutput(outputId = "your_viz_1_output_id")
 )
 
-mh_expenditure_heatmap_tab <- tabPanel("Mental Health Expenditure Heatmap",
-                                       fluidPage(
-                                         h2("Mental Health Expenditure Heatmap"),
-                                         sidebarLayout(
-                                           mh_expenditure_heatmap_sidebar,
-                                           mh_expenditure_heatmap_main_panel
-                                         )
-                                       )
+viz_2_tab <- tabPanel("MH Expenditure per State",
+  sidebarLayout(
+    viz_2_sidebar,
+    viz_2_main_panel
+  )
 )
 
-## SCATTERPLOT OF PER CAPITA SPENDING VS. SUICIDE RATES TAB INFO
+## VIZ 3 TAB INFO
 
-scatterplot_sidebar <- sidebarPanel(
-  # Add any sidebar inputs here if needed
+viz_3_sidebar <- sidebarPanel(
+  h2("Options for graph"),
+  #TODO: Put inputs for modifying graph here
 )
 
-scatterplot_main_panel <- mainPanel(
-  plotOutput("scatterplot")
+viz_3_main_panel <- mainPanel(
+  h2("Scatterplot of MH Expenditures and Suicide Rates"),
+  # plotlyOutput(outputId = "your_viz_1_output_id")
 )
 
-scatterplot_tab <- tabPanel("Scatterplot",
-                            fluidPage(
-                              h2("Scatterplot of Per Capita Spending vs. Suicide Rates"),
-                              sidebarLayout(
-                                scatterplot_sidebar,
-                                scatterplot_main_panel
-                              )
-                            )
+viz_3_tab <- tabPanel("Correlation",
+  sidebarLayout(
+    viz_3_sidebar,
+    viz_3_main_panel
+  )
 )
 
 ## CONCLUSIONS TAB INFO
 
-conclusion_tab <- tabPanel("Conclusion",
-                           fluidPage(
-                             h1("Conclusion"),
-                             p("Summarize your findings and conclusions here.")
-                             # Add any additional content as needed
-                           )
+conclusion_tab <- tabPanel("Closing",
+ h1("Conclusion"),
+ p("WIP concluding statements")
 )
 
-# Define UI for application
-ui <- navbarPage("State Expenditures and Suicide Rates Analysis",
-                 overview_tab,
-                 suicide_heatmap_tab,
-                 mh_expenditure_heatmap_tab,
-                 scatterplot_tab,
-                 conclusion_tab
+
+
+ui <- navbarPage("US Mental Health Budget",
+  overview_tab,
+  viz_1_tab,
+  viz_2_tab,
+  viz_3_tab,
+  conclusion_tab
+)
