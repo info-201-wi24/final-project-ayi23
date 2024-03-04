@@ -45,13 +45,18 @@ viz_1_tab <- tabPanel("Suicide Rates per State",
 ## VIZ 2 TAB INFO
 
 viz_2_sidebar <- sidebarPanel(
-  h2("WIP heatmap"),
+  h2("State Mental Health Expenditure"),
+  radioButtons(
+    inputId ="viz2radio",
+    label = h3("Choose an option."),
+    choices = list("Per Capita Expenditure" = "PerCapitaMHExpend", "Total Expenditure" = "TotalMHExpenditure")
+  )
   #TODO: Put inputs for modifying graph here
 )
 
 viz_2_main_panel <- mainPanel(
   h2("Heatmap of State Mental Health Expenditures"),
-  leafletOutput(outputId = "your_viz_2_output_id")
+  leafletOutput(outputId = "your_viz_2_output_id"),
 )
 
 viz_2_tab <- tabPanel("MH Expenditure per State",
