@@ -1,7 +1,12 @@
+library(sf)
+library(tigris)
 
 suicide_df<- read.csv("2015 Suicide Rates By State.csv")
 stateexp_df<- read.csv("StateExpenditures.csv")
 combined_df<-read.csv("State Expenditures and Suicide Rates.csv")
+combined_df <- combined_df %>%
+  mutate(DEATHS = gsub(",", "", DEATHS), # Remove commas
+         DEATHS = as.numeric(DEATHS))
 
 ## OVERVIEW TAB INFO
 
@@ -19,7 +24,7 @@ viz_1_sidebar <- sidebarPanel(
   radioButtons(
     inputId = "viz1radio",
     label = h3("Choose an option."),
-    choices = list("Suicide Rates by Sate" = 1, "Suicide Death Count" = 2)
+    choices = list("Suicide Rates by Sate" = "RATE", "Suicide Death Count" = "DEATHS")
   )
   #TODO: Put inputs for modifying graph here
 )
@@ -27,7 +32,7 @@ viz_1_sidebar <- sidebarPanel(
 
 viz_1_main_panel <- mainPanel(
   h2("Heatmap of Suicide Rates"),
-  # plotlyOutput(outputId = "your_viz_1_output_id")
+  leafletOutput(outputId = "your_viz_1_output_id")
 )
 
 viz_1_tab <- tabPanel("Suicide Rates per State",
@@ -67,7 +72,7 @@ viz_3_main_panel <- mainPanel(
   h2("Scatterplot of MH Expenditures and Suicide Rates"),
   # plotlyOutput(outputId = "your_viz_1_output_id")
 )
-nkcjanjkcn
+
 viz_3_tab <- tabPanel("Correlation",
   sidebarLayout(
     viz_3_sidebar,
