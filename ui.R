@@ -68,11 +68,6 @@ viz_2_tab <- tabPanel("MH Expenditure per State",
 
 ## VIZ 3 TAB INFO
 
-viz_3_sidebar <- sidebarPanel(
-  h2("Options for graph"),
-  #TODO: Put inputs for modifying graph here
-)
-
 viz_3_main_panel <- mainPanel(
   h2("Scatterplot of MH Expenditures and Suicide Rates"),
   plotlyOutput(outputId = "your_viz_3_output_id")
