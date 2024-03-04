@@ -48,25 +48,9 @@ server <- function(input, output){
       )
   })
 #following code is for Viz3, AKA the interactive scatterplot 
-  
-output$your_viz_3_output_id <-  renderPlotly({
-combined_df <- read.csv("State Expenditures and Suicide Rates.csv")
 
-expendsuicide_plot <- ggplot(combined_df) +
-    geom_point(mapping = aes(x = PerCapitaMHExpend, y = RATE, fill = STATE, text = paste0(STATE,", ", RATE, "%"))) +
-    (labs(title = "Suicide Rates vs. State Per Capita Expenditures", x = "State Expenditures Per Capita", y = "Suicide Rate"))
-expendsuicide_plot %>% ggplotly(tooltip=c("text"))
-  })
-
-  # TODO Make outputs based on the UI inputs here
-}
-
-# Heatmap for MH Expenditure
-MHserver <- function(input, output){
-  combined_df <- read.csv("State Expenditures and Suicide Rates.csv")
-  
-  MHselected_data <- reactive({
-    combined_df %>%
+ MHselected_data <- reactive({
+    combined_sf %>%
       mutate(TotalMHExpend = gsub(",", "", TotalMHExpend),
              TotalMHExpend = as.numeric(TotalMHExpend),
              Value = .[[input$viz2radio]])
@@ -88,8 +72,19 @@ MHserver <- function(input, output){
         popup = ~paste(NAME, MHselected_data()$Value)
       )
   })
-
   
+output$your_viz_3_output_id <-  renderPlotly({
+combined_df <- read.csv("State Expenditures and Suicide Rates.csv")
+
+expendsuicide_plot <- ggplot(combined_df) +
+    geom_point(mapping = aes(x = PerCapitaMHExpend, y = RATE, fill = STATE, text = paste0(STATE,", ", RATE, "%"))) +
+    (labs(title = "Suicide Rates vs. State Per Capita Expenditures", x = "State Expenditures Per Capita", y = "Suicide Rate"))
+expendsuicide_plot %>% ggplotly(tooltip=c("text"))
+  })
+
+  # TODO Make outputs based on the UI inputs here
+}
+ 
   # TO DO make outputs
 }
 
