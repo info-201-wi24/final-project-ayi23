@@ -51,7 +51,7 @@ viz_2_sidebar <- sidebarPanel(
 
 viz_2_main_panel <- mainPanel(
   h2("Heatmap of State Mental Health Expenditures"),
-  # plotlyOutput(outputId = "your_viz_1_output_id")
+  leafletOutput(outputId = "your_viz_2_output_id")
 )
 
 viz_2_tab <- tabPanel("MH Expenditure per State",
@@ -70,7 +70,7 @@ viz_3_sidebar <- sidebarPanel(
 
 viz_3_main_panel <- mainPanel(
   h2("Scatterplot of MH Expenditures and Suicide Rates"),
-  # plotlyOutput(outputId = "your_viz_1_output_id")
+  plotlyOutput(outputId = "your_viz_3_output_id")
 )
 
 viz_3_tab <- tabPanel("Correlation",
