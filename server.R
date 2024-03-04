@@ -60,3 +60,32 @@ expendsuicide_plot %>% ggplotly(tooltip=c("text"))
 
   # TODO Make outputs based on the UI inputs here
 }
+
+MHserver <- function(input, output){
+  MHselected_data <- reactive({
+    combined_sf %>%
+      mutate(TotalMHExpend = gsub(",", "", TotalMHExpend),
+             TotalMHExpend = as.numeric(TotalMHExpend),
+             Value = .[[input$viz2radio]])
+  })
+  
+  output$your_viz2_output_id <- renderLeaflet({
+    leaflet(data = MHselected_data()) %>%
+      addTiles() %>%
+      addProviderTiles(providers$CartoDB.Positron) %>%
+      setView(lng = -98.5795, lat = 39.8283, zoom = 4) %>%
+      addPolygons(
+        fillCOlor = ~colorNumeric("YlOrRd", Value)(Value),
+        weight = 1,
+        opacity = 1,
+        color = 'white',
+        dashArray = '3',
+        fillOpacity = 0.7,
+        smoothFactor = 0.5,
+        popup = ~paste(NAME, Value)
+      )
+  })
+  
+  # TO DO make outputs
+}
+
