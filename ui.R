@@ -24,7 +24,7 @@ viz_1_sidebar <- sidebarPanel(
   radioButtons(
     inputId = "viz1radio",
     label = h3("Choose an option."),
-    choices = list("Suicide Rates by Sate" = "RATE", "Suicide Death Count" = "DEATHS")
+    choices = list("Suicide Rates by State" = "RATE", "Suicide Death Count" = "DEATHS")
   )
   #TODO: Put inputs for modifying graph here
 )
