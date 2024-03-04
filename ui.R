@@ -1,4 +1,7 @@
 
+suicide_df<- read.csv("2015 Suicide Rates By State.csv")
+stateexp_df<- read.csv("StateExpenditures.csv")
+combined_df<-read.csv("State Expenditures and Suicide Rates.csv")
 
 ## OVERVIEW TAB INFO
 
@@ -7,12 +10,20 @@ overview_tab <- tabPanel("Overview",
    p("WIP")
 )
 
+
+
 ## VIZ 1 TAB INFO
 
 viz_1_sidebar <- sidebarPanel(
-  h2("WIP heatmap"),
+  h2("Suicide rates"),
+  radioButtons(
+    inputId = "viz1radio",
+    label = h3("Choose an option."),
+    choices = list("Suicide Rates by Sate" = 1, "Suicide Death Count" = 2)
+  )
   #TODO: Put inputs for modifying graph here
 )
+
 
 viz_1_main_panel <- mainPanel(
   h2("Heatmap of Suicide Rates"),
