@@ -63,32 +63,33 @@ expendsuicide_plot %>% ggplotly(tooltip=c("text"))
 
 # Heatmap for MH Expenditure
 MHserver <- function(input, output){
+  combined_df <- read.csv("State Expenditures and Suicide Rates.csv")
+  
   MHselected_data <- reactive({
-    combined_sf %>%
+    combined_df %>%
       mutate(TotalMHExpend = gsub(",", "", TotalMHExpend),
              TotalMHExpend = as.numeric(TotalMHExpend),
              Value = .[[input$viz2radio]])
   })
   
   output$your_viz_2_output_id <- renderLeaflet({
-    leaflet(data = MHselected_data()) %>%
+    leaflet(data = MHselected_data() %>% select(NAME, Value)) %>%
       addTiles() %>%
       addProviderTiles(providers$CartoDB.Positron) %>%
       setView(lng = -98.5795, lat = 39.8283, zoom = 4) %>%
       addPolygons(
-        fillColor = ~colorNumeric("YlOrRd", Value)(Value),
+        fillColor = ~colorNumeric("YlOrRd", MHselected_data()$Value)(MHselected_data()$Value),
         weight = 1,
         opacity = 1,
         color = 'white',
         dashArray = '3',
         fillOpacity = 0.7,
         smoothFactor = 0.5,
-        popup = ~paste(NAME, Value)
+        popup = ~paste(NAME, MHselected_data()$Value)
       )
   })
 
   
   # TO DO make outputs
 }
-
 
