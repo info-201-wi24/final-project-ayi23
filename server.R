@@ -49,7 +49,7 @@ server <- function(input, output){
   })
 #following code is for Viz3, AKA the interactive scatterplot 
   
-output$your_viz_3_outpt_id <-  renderggplot2({
+output$your_viz_3_outpt_id <-  renderPlotly({
 combined_df <- read.csv("State Expenditures and Suicide Rates.csv")
 
 expendsuicide_plot <- ggplot(combined_df) +
