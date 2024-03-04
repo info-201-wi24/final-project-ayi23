@@ -47,7 +47,16 @@ server <- function(input, output){
         popup = ~paste(NAME, Value) # Popup shows state name and selected measure
       )
   })
+#following code is for Viz3, AKA the interactive scatterplot 
   
+output$your_viz_3_outpt_id <-  renderggplot2({
+combined_df <- read.csv("State Expenditures and Suicide Rates.csv")
+
+expendsuicide_plot <- ggplot(combined_df) +
+    geom_point(mapping = aes(x = PerCapitaMHExpend, y = RATE, fill = STATE, text = paste0(STATE,", ", RATE, "%"))) +
+    (labs(title = "Suicide Rates vs. State Per Capita Expenditures", x = "State Expenditures Per Capita", y = "Suicide Rate"))
+expendsuicide_plot %>% ggplotly(tooltip=c("text"))
+  })
+
   # TODO Make outputs based on the UI inputs here
-  
 }
