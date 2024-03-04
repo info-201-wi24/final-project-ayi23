@@ -67,7 +67,7 @@ viz_3_main_panel <- mainPanel(
   h2("Scatterplot of MH Expenditures and Suicide Rates"),
   # plotlyOutput(outputId = "your_viz_1_output_id")
 )
-
+nkcjanjkcn
 viz_3_tab <- tabPanel("Correlation",
   sidebarLayout(
     viz_3_sidebar,
