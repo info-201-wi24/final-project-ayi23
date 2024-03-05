@@ -49,7 +49,7 @@ viz_2_sidebar <- sidebarPanel(
   radioButtons(
     inputId ="viz2radio",
     label = h3("Choose an option."),
-    choices = list("Per Capita Expenditure" = "PerCapitaMHExpend", "Total Expenditure" = "TotalMHExpenditure")
+    choices = list("Per Capita Expenditure" = "PerCapitaMHExpend", "Total Expenditure" = "TotalMHExpend")
   )
   #TODO: Put inputs for modifying graph here
 )
