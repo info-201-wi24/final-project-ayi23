@@ -79,8 +79,9 @@ output$your_viz_3_output_id <-  renderPlotly({
 combined_df <- read.csv("State Expenditures and Suicide Rates.csv")
 
 expendsuicide_plot <- ggplot(combined_df) +
-    geom_point(mapping = aes(x = PerCapitaMHExpend, y = RATE, fill = STATE, text = paste0(STATE,", ", RATE, "%"))) +
-    (labs(title = "Suicide Rates vs. State Per Capita Expenditures", x = "State Expenditures Per Capita", y = "Suicide Rate"))
+  geom_point(mapping = aes(x = PerCapitaMHExpend, y = RATE, fill = STATE, text = paste0(STATE,", ", RATE, "%"))) +
+  (labs(title = "Suicide Rates vs. State Per Capita Expenditures", x = "State Expenditures Per Capita", y = "Suicide Rate")) +
+  geom_smooth(aes(PerCapitaMHExpend, RATE), method="lm", se=F)
 expendsuicide_plot %>% ggplotly(tooltip=c("text"))
   })
 
