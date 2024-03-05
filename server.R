@@ -47,7 +47,8 @@ server <- function(input, output){
         popup = ~paste(NAME, Value) # Popup shows state name and selected measure
       )
   })
-#following code is for Viz3, AKA the interactive scatterplot 
+  
+# Following code is for Viz2, aka MH Expenditure Heatmaps 
 
  MHselected_data <- reactive({
     combined_sf %>%
@@ -72,7 +73,8 @@ server <- function(input, output){
         popup = ~paste(NAME, MHselected_data()$Value)
       )
   })
-  
+
+# Following code is for viz3, aka correlational scatterplot
 output$your_viz_3_output_id <-  renderPlotly({
 combined_df <- read.csv("State Expenditures and Suicide Rates.csv")
 
