@@ -75,7 +75,6 @@ viz_3_main_panel <- mainPanel(
 
 viz_3_tab <- tabPanel("Correlation",
   sidebarLayout(
-    viz_3_sidebar,
     viz_3_main_panel
   )
 )
