@@ -89,5 +89,4 @@ expendsuicide_plot %>% ggplotly(tooltip=c("text"))
 }
  
   # TO DO make outputs
-}
 
