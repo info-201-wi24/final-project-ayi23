@@ -66,6 +66,7 @@ viz_2_tab <- tabPanel("MH Expenditure per State",
   )
 )
 
+
 ## VIZ 3 TAB INFO
 
 viz_3_main_panel <- mainPanel(
@@ -74,10 +75,11 @@ viz_3_main_panel <- mainPanel(
 )
 
 viz_3_tab <- tabPanel("Correlation",
-  sidebarLayout(
-    viz_3_main_panel
-  )
+                (
+                        viz_3_main_panel
+                      )
 )
+
 
 ## CONCLUSIONS TAB INFO
 
