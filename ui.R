@@ -1,5 +1,11 @@
 library(sf)
 library(tigris)
+library(ggplot2)
+library(plotly)
+library(dplyr)
+library(leaflet)
+library(tigris)
+
 
 suicide_df<- read.csv("2015 Suicide Rates By State.csv")
 stateexp_df<- read.csv("StateExpenditures.csv")
@@ -11,9 +17,8 @@ combined_df <- combined_df %>%
 ## OVERVIEW TAB INFO
 
 overview_tab <- tabPanel("Overview",
-   h1("Mental Health Expenditures & Suicide Rates"),
-   p("WIP"),
-   img(src = "https://images.seattletimes.com/wp-content/uploads/2021/12/Seeking-Therapy-W.jpg?d=1560x1002", width = "500px", height = "300pxpx")
+                         h1("Mental Health Expenditures & Suicide Rates"),
+                         p("WIP")
 )
 
 
@@ -37,10 +42,10 @@ viz_1_main_panel <- mainPanel(
 )
 
 viz_1_tab <- tabPanel("Suicide Rates per State",
-  sidebarLayout(
-    viz_1_sidebar,
-    viz_1_main_panel
-  )
+                      sidebarLayout(
+                        viz_1_sidebar,
+                        viz_1_main_panel
+                      )
 )
 
 ## VIZ 2 TAB INFO
@@ -61,10 +66,10 @@ viz_2_main_panel <- mainPanel(
 )
 
 viz_2_tab <- tabPanel("MH Expenditure per State",
-  sidebarLayout(
-    viz_2_sidebar,
-    viz_2_main_panel
-  )
+                      sidebarLayout(
+                        viz_2_sidebar,
+                        viz_2_main_panel
+                      )
 )
 
 
@@ -76,7 +81,7 @@ viz_3_main_panel <- mainPanel(
 )
 
 viz_3_tab <- tabPanel("Correlation",
-                (
+                      (
                         viz_3_main_panel
                       )
 )
@@ -85,16 +90,16 @@ viz_3_tab <- tabPanel("Correlation",
 ## CONCLUSIONS TAB INFO
 
 conclusion_tab <- tabPanel("Closing",
- h1("Conclusion"),
- p("WIP concluding statements")
+                           h1("Conclusion"),
+                           p("WIP concluding statements")
 )
 
 
 
 ui <- navbarPage("US Mental Health Budget",
-  overview_tab,
-  viz_1_tab,
-  viz_2_tab,
-  viz_3_tab,
-  conclusion_tab
+                 overview_tab,
+                 viz_1_tab,
+                 viz_2_tab,
+                 viz_3_tab,
+                 conclusion_tab
 )
