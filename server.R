@@ -8,6 +8,15 @@ library(tigris)
 options(tigris_class = "sf")
 options(tigris_use_cache = TRUE)
 
+
+
+suicide_df<- read.csv("2015 Suicide Rates By State.csv")
+stateexp_df<- read.csv("StateExpenditures.csv")
+combined_df<-read.csv("State Expenditures and Suicide Rates.csv")
+combined_df <- combined_df %>%
+  mutate(DEATHS = gsub(",", "", DEATHS), # Remove commas
+         DEATHS = as.numeric(DEATHS))
+
 # Load US states geographic data from the tigris package
 us_states_sf <- states()
 
@@ -48,9 +57,9 @@ server <- function(input, output){
       )
   })
   
-# Following code is for Viz2, aka MH Expenditure Heatmaps 
-
- MHselected_data <- reactive({
+  # Following code is for Viz2, aka MH Expenditure Heatmaps 
+  
+  MHselected_data <- reactive({
     combined_sf %>%
       mutate(TotalMHExpend = gsub(",", "", TotalMHExpend),
              TotalMHExpend = as.numeric(TotalMHExpend),
@@ -73,20 +82,19 @@ server <- function(input, output){
         popup = ~paste(NAME, MHselected_data()$Value)
       )
   })
-
-# Following code is for viz3, aka correlational scatterplot
-output$your_viz_3_output_id <-  renderPlotly({
-combined_df <- read.csv("State Expenditures and Suicide Rates.csv")
-
-expendsuicide_plot <- ggplot(combined_df) +
-  geom_point(mapping = aes(x = PerCapitaMHExpend, y = RATE, fill = STATE, text = paste0(STATE,", ", RATE, "%"))) +
-  (labs(title = "Suicide Rates vs. State Per Capita Expenditures", x = "State Expenditures Per Capita", y = "Suicide Rate")) +
-  geom_smooth(aes(PerCapitaMHExpend, RATE), method="lm", se=F)
-expendsuicide_plot %>% ggplotly(tooltip=c("text"))
+  
+  # Following code is for viz3, aka correlational scatterplot
+  output$your_viz_3_output_id <-  renderPlotly({
+    combined_df <- read.csv("State Expenditures and Suicide Rates.csv")
+    
+    expendsuicide_plot <- ggplot(combined_df) +
+      geom_point(mapping = aes(x = PerCapitaMHExpend, y = RATE, fill = STATE, text = paste0(STATE,", ", RATE, "%"))) +
+      (labs(title = "Suicide Rates vs. State Per Capita Expenditures", x = "State Expenditures Per Capita", y = "Suicide Rate")) +
+      geom_smooth(aes(PerCapitaMHExpend, RATE), method="lm", se=F)
+    expendsuicide_plot %>% ggplotly(tooltip=c("text"))
   })
-
+  
   # TODO Make outputs based on the UI inputs here
 }
- 
-  # TO DO make outputs
 
+# TO DO make outputs
