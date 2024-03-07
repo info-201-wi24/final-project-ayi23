@@ -17,9 +17,10 @@ combined_df <- combined_df %>%
 ## OVERVIEW TAB INFO
 
 overview_tab <- tabPanel("Overview",
-                         h1("Mental Health Expenditures & Suicide Rates"),
-                         p("WIP")
+   h1("Mental Health Expenditures & Suicide Rates"),
+   img(src = "https://images.seattletimes.com/wp-content/uploads/2021/12/Seeking-Therapy-W.jpg?d=1560x1002", width = "500px", height = "300pxpx")
 )
+
 
 
 
