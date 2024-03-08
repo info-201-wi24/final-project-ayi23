@@ -1,7 +1,7 @@
 # Exploring State Mental Health Budgets and Suicide Rates
 ## INFO 201 "Foundational Skills for Data Science"
 
-Authors: Autumn Yi, Alice Kharrasova, Renee Chien, Priscilla Kwon
+Authors: Autumn Yi, Alice Kharrasova, Renee Chien, Priscilla Jin
 
 
 For the Final Project -- Data Wrangling, add the following to this code repository:
